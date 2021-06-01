@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        style="@style/BackgroundBlur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/size_for_50dp"
+        android:layout_height="@dimen/size_for_50dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/dodger_blue_palette"
+        android:indeterminateTintMode="src_atop" />
+</FrameLayout>

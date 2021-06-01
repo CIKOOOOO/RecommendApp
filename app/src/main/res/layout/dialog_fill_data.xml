@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/wild_sand_palette"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/size_for_40dp">
+
+    <EditText
+        android:id="@+id/et_data_name"
+        android:layout_width="@dimen/size_for_200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_for_20dp"
+        android:hint="Input Data Name"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/et_vendor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_for_10dp"
+        android:hint="Input Vendor Name"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/et_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_for_10dp"
+        android:hint="Input Price"
+        android:inputType="numberDecimal"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/et_rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_for_10dp"
+        android:hint="Input Rate"
+        android:inputType="numberDecimal"
+        android:maxLines="1" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_for_20dp"
+        android:text="Save" />
+</LinearLayout>
