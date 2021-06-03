@@ -141,8 +141,8 @@ public class FillDataViewModel extends AndroidViewModel {
         for (int i = 0; i < dataList.size(); i++) {
             Data data = dataList.get(i);
             // TODO: Uncommend this
-//            double value = data.getPrice() * (Constant.MAX_RATE - data.getRate());
-            double value = data.getPrice();
+            double value = data.getPrice() * (Constant.MAX_RATE - data.getRate());
+//            double value = data.getPrice();
             if (i == 0) {
                 minValue = value;
                 nodeID = "Node_" + pos + "_" + i;
