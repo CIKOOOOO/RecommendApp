@@ -86,23 +86,23 @@ public class FillDataActivity extends BaseActivity implements View.OnClickListen
                 dotAdapter.addCount();
                 break;
             case R.id.btn_result:
-                if (parentAdapter.getMasterDataList().size() < 3) {
-                    showSnackBar("Minimum page is 3");
-                } else {
-                    boolean isError = false;
-                    for (MasterData masterData : parentAdapter.getMasterDataList()) {
-                        if (null == masterData.getDataList() || masterData.getDataList().size() == 0) {
-                            showSnackBar("Minimum data each page is 1");
-                            isError = true;
-                            break;
-                        }
-                    }
-                    if (!isError) {
-                        customLoading.show(getSupportFragmentManager(), "");
-                        viewModel.checkForResult(parentAdapter.getMasterDataList(), projectName);
-                    }
-                }
-//                viewModel.checkForResult(sampleData(), projectName);
+//                if (parentAdapter.getMasterDataList().size() < 3) {
+//                    showSnackBar("Minimum page is 3");
+//                } else {
+//                    boolean isError = false;
+//                    for (MasterData masterData : parentAdapter.getMasterDataList()) {
+//                        if (null == masterData.getDataList() || masterData.getDataList().size() == 0) {
+//                            showSnackBar("Minimum data each page is 1");
+//                            isError = true;
+//                            break;
+//                        }
+//                    }
+//                    if (!isError) {
+//                        customLoading.show(getSupportFragmentManager(), "");
+//                        viewModel.checkForResult(parentAdapter.getMasterDataList(), projectName);
+//                    }
+//                }
+                viewModel.checkForResult(sampleData(), projectName);
                 break;
         }
     }

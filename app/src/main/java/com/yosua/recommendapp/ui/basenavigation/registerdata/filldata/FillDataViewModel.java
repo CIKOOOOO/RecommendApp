@@ -1,6 +1,7 @@
 package com.yosua.recommendapp.ui.basenavigation.registerdata.filldata;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,6 +15,7 @@ import com.yosua.recommendapp.model.Edge;
 import com.yosua.recommendapp.model.Graph;
 import com.yosua.recommendapp.model.MasterData;
 import com.yosua.recommendapp.model.Vertex;
+import com.yosua.recommendapp.utils.Constant;
 import com.yosua.recommendapp.utils.DijkstraAlgorithm;
 import com.yosua.recommendapp.utils.PrefConfig;
 import com.yosua.recommendapp.utils.Tree;
@@ -90,11 +92,13 @@ public class FillDataViewModel extends AndroidViewModel {
                 int dataPositions = Integer.parseInt(splitNodes[2]);
 
                 if (pagePositions == (pagePosition + 1)) {
+                    // Source
                     Data data = masterDataList.get(pagePosition).getDataList().get(dataPosition);
-                    Data data1 = masterDataList.get(pagePosition).getDataList().get(dataPosition);
-                    double distance = (data.getPrice() + data1.getPrice()) / 2;
+                    // Destination
+                    Data data1 = masterDataList.get(pagePositions).getDataList().get(dataPositions);
+//                    double distance = (data.getPrice() + data1.getPrice()) / 2;
                     // TODO: Uncommend this
-//                    double distance = (data.getPrice() * (Constant.MAX_RATE - data.getRate()) + data1.getPrice() * (Constant.MAX_RATE - data1.getRate())) / 2;
+                    double distance = (data.getPrice() * (Constant.MAX_RATE - data.getRate()) + data1.getPrice() * (Constant.MAX_RATE - data1.getRate())) / 2;
                     addLane("Edge_" + counter, nodes.get(i), nodes.get(j), distance);
                     counter++;
                 }
@@ -103,7 +107,9 @@ public class FillDataViewModel extends AndroidViewModel {
 
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
+        // Source
         dijkstra.execute(nodes.get(0));
+        // Destination
         LinkedList<Vertex> path = dijkstra.getPath(nodes.get(nodes.size() - 1));
 
 //        assertNotNull(path);
@@ -123,6 +129,12 @@ public class FillDataViewModel extends AndroidViewModel {
         sendToDatabase(dataList);
     }
 
+    private void addLane(String laneId, Vertex sourceLocNo, Vertex destLocNo,
+                         double duration) {
+        Edge lane = new Edge(laneId, sourceLocNo, destLocNo, duration);
+        edges.add(lane);
+    }
+
     private String getSmallestAmount(int pos, List<Data> dataList) {
         String nodeID = "";
         double minValue = 0;
@@ -140,12 +152,6 @@ public class FillDataViewModel extends AndroidViewModel {
             }
         }
         return nodeID;
-    }
-
-    private void addLane(String laneId, Vertex sourceLocNo, Vertex destLocNo,
-                         double duration) {
-        Edge lane = new Edge(laneId, sourceLocNo, destLocNo, duration);
-        edges.add(lane);
     }
 
     private void sendToDatabase(List<Data> dataList) {

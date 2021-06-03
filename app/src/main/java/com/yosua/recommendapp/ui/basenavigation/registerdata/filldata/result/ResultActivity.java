@@ -43,6 +43,8 @@ public class ResultActivity extends BaseActivity {
                 tvProjectName.setText(projectName);
                 resultAdapter.setData(dataList);
             }
+        } else {
+            onBackPressed();
         }
     }
 
